@@ -1,0 +1,454 @@
+Library {
+  Name			  "roblocks"
+  Version		  3.00
+  BlockDataTips		  off
+  BlockParametersDataTip  off
+  BlockAttributesDataTip  off
+  BlockPortWidthsDataTip  off
+  BlockDescriptionStringDataTip	off
+  BlockMaskParametersDataTip off
+  ToolBar		  off
+  StatusBar		  off
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  Created		  "Tue Nov  6 20:25:41 2001"
+  Creator		  "pic"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "pic"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Tue Nov  6 21:16:00 2001"
+  ModelVersionFormat	  "1.%<AutoIncrement:2>"
+  ConfigurationManager	  "none"
+  BlockDefaults {
+    Orientation		    "right"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  System {
+    Name		    "roblocks"
+    Location		    [60, 167, 784, 353]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "lightBlue"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    ZoomFactor		    "100"
+    AutoZoom		    on
+    ReportName		    "simulink-default.rpt"
+    Block {
+      BlockType		      SubSystem
+      Name		      "Robot"
+      Ports		      [1, 2, 0, 0, 0]
+      Position		      [40, 62, 100, 133]
+      BackgroundColor	      "red"
+      DropShadow	      on
+      ShowPortLabels	      on
+      MaskDescription	      "Dynamic model of robot"
+      MaskHelp		      "gravity comes from the robot object\n"
+      MaskPromptString	      "Robot object|Initial state"
+      MaskStyleString	      "edit,edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskVariables	      "robot=@1;q0=@2;"
+      MaskInitialization      "n = robot.n;"
+      MaskDisplay	      "text(0.5, 0.2, robot.name,  'horizontalAlignmen"
+"t', 'center')\nport_label('input', 1, '\\tau')\nport_label('output', 1, 'q')"
+"\nport_label('output', 2, 'qd')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "|"
+      System {
+	Name			"Robot"
+	Location		[191, 349, 681, 534]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	ZoomFactor		"100"
+	AutoZoom		on
+	Block {
+	  BlockType		  Inport
+	  Name			  "tau"
+	  Position		  [30, 48, 60, 62]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "Integrator"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [265, 65, 295, 95]
+	  ExternalReset		  "none"
+	  InitialConditionSource  "internal"
+	  InitialCondition	  "0"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "inf"
+	  LowerSaturationLimit	  "-inf"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	  Port {
+	    PortNumber		    1
+	    Name		    "qd"
+	    TestPoint		    off
+	    RTWStorageClass	    "Auto"
+	  }
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "Integrator1"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [345, 65, 375, 95]
+	  ExternalReset		  "none"
+	  InitialConditionSource  "internal"
+	  InitialCondition	  "0"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "inf"
+	  LowerSaturationLimit	  "-inf"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [105, 44, 115, 116]
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Fcn
+	  Name			  "accel"
+	  Position		  [165, 65, 225, 95]
+	  Expr			  "accel(robot, u(1), u(2), tau, gravity)"
+	  Port {
+	    PortNumber		    1
+	    Name		    "qdd"
+	    TestPoint		    off
+	    RTWStorageClass	    "Auto"
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "q"
+	  Position		  [435, 73, 465, 87]
+	  Port			  "1"
+	  OutputWhenDisabled	  "held"
+	  InitialOutput		  "[]"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "qd"
+	  Position		  [440, 128, 470, 142]
+	  Port			  "2"
+	  OutputWhenDisabled	  "held"
+	  InitialOutput		  "[]"
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "accel"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "tau"
+	  SrcPort		  1
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "qdd"
+	  Labels		  [0, 0]
+	  SrcBlock		  "accel"
+	  SrcPort		  1
+	  DstBlock		  "Integrator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Integrator1"
+	  SrcPort		  1
+	  Points		  [25, 0]
+	  Branch {
+	    DstBlock		    "q"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 80; -325, 0; 0, -80]
+	    DstBlock		    "Mux"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  Name			  "qd"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Integrator"
+	  SrcPort		  1
+	  Points		  [25, 0]
+	  Branch {
+	    Points		    [5, 0]
+	    Branch {
+	      DstBlock		      "Integrator1"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, 55]
+	      DstBlock		      "qd"
+	      DstPort		      1
+	    }
+	  }
+	  Branch {
+	    Points		    [0, 60; -235, 0]
+	    DstBlock		    "Mux"
+	    DstPort		    3
+	  }
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "jacob0"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [245, 71, 295, 124]
+      BackgroundColor	      "red"
+      ShowPortLabels	      on
+      MaskDescription	      "Robot Jacobian for end-effector coordinates"
+      MaskPromptString	      "Robot object"
+      MaskStyleString	      "edit"
+      MaskTunableValueString  "on"
+      MaskEnableString	      "on"
+      MaskVisibilityString    "on"
+      MaskVariables	      "robot=@1;"
+      MaskDisplay	      "text(0.4, 0.7, 'J', 'verticalAlignment', 'top',"
+" 'horizontalAlignment', 'left')\ntext(0.4, 0.7, '0', 'verticalAlignment', 'bo"
+"ttom', 'horizontalAlignment', 'right')\ntext(0.5, 0.2, robot.name,  'horizont"
+"alAlignment', 'center')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "normalized"
+      System {
+	Name			"jacob0"
+	Location		[167, 513, 531, 662]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	ZoomFactor		"100"
+	AutoZoom		on
+	Block {
+	  BlockType		  Inport
+	  Name			  "q"
+	  Position		  [20, 23, 50, 37]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "dq"
+	  Position		  [20, 68, 50, 82]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [85, 21, 90, 59]
+	  ShowName		  off
+	  Inputs		  "2"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Fcn
+	  Name			  "jacob0"
+	  Position		  [105, 25, 165, 55]
+	  Expr			  "jacob0(robot, u(1))*u(2)"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "dx"
+	  Position		  [220, 33, 250, 47]
+	  Port			  "1"
+	  OutputWhenDisabled	  "held"
+	  InitialOutput		  "[]"
+	}
+	Line {
+	  SrcBlock		  "jacob0"
+	  SrcPort		  1
+	  DstBlock		  "dx"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "jacob0"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "q"
+	  SrcPort		  1
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "dq"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "jacob2"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [405, 71, 455, 124]
+      BackgroundColor	      "red"
+      SourceBlock	      "roblocks/jacob0"
+      SourceType	      ""
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "jacobn"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [320, 71, 370, 124]
+      BackgroundColor	      "red"
+      SourceBlock	      "roblocks/jacob0"
+      SourceType	      ""
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "plot"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [135, 67, 205, 123]
+      BackgroundColor	      "red"
+      ShowPortLabels	      on
+      MaskHelp		      "This block graphically displays the named robot"
+      MaskPromptString	      "Name of robot"
+      MaskStyleString	      "edit"
+      MaskTunableValueString  "on"
+      MaskEnableString	      "on"
+      MaskVisibilityString    "on"
+      MaskVariables	      "robot=@1;"
+      MaskInitialization      "plot(robot,zeros(robot.n,1))"
+      MaskDisplay	      "text(0.5, 0.5,  robot.name, 'horizontalAlignmen"
+"t', 'center')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "p560"
+      System {
+	Name			"plot"
+	Location		[195, 498, 460, 580]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	ZoomFactor		"100"
+	AutoZoom		on
+	Block {
+	  BlockType		  Inport
+	  Name			  "q"
+	  Position		  [25, 33, 55, 47]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Fcn
+	  Name			  "Fcn"
+	  Position		  [125, 25, 185, 55]
+	  Expr			  "plot(robot,q)"
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator"
+	  Position		  [220, 30, 240, 50]
+	}
+	Line {
+	  SrcBlock		  "q"
+	  SrcPort		  1
+	  DstBlock		  "Fcn"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Fcn"
+	  SrcPort		  1
+	  DstBlock		  "Terminator"
+	  DstPort		  1
+	}
+      }
+    }
+    Annotation {
+      Position		      [268, 24]
+      BackgroundColor	      "lightBlue"
+      Text		      "Robotics Toolbox for Matlab (release 7)"
+      FontName		      "new century schoolbook"
+      FontSize		      24
+      FontWeight	      "bold"
+    }
+  }
+}

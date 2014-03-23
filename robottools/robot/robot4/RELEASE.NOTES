@@ -1,0 +1,99 @@
+		Robotics Toolbox - Release notes
+
+Release 4
+=========
+
+1.  Fixed a bug in trinterp() and drivepar() that causes errors in ctraj()
+    with trajectories that involve rotation around the Z-axis.
+
+2.  Fixed a bug with passing in end-effector force/moment to rne().
+
+3.  A Mailing List is now available.  To subscribe you send mail to:
+
+	robot-toolbox-request@dmt.csiro.au
+
+   with the single word
+
+	subscribe
+
+   in the body of the message. You can send other administrative messages, such
+   as "help", "list", ...
+
+
+4.  Changed location of Toolbox home page.
+
+	http://www.brb.dmt.csiro.au/dmt/programs/autom/pic/matlab.html
+
+5.  New rne.mex for DOS/Windows.  This was created by a user using the new
+    Matlab compiler and cmex'd for DOS.  I don't have mcc, but if anybody
+    would like to produce a MEX file for Sparc I'd like a copy.
+
+6.  New versions of cinertia(), jacob0(), jacobn(), maniplty() that accept an
+    optional M argument to select Cartesian DOF for robots with n < 6.
+
+7.  The function cross.m is no longer supplied.  It has different semantics to
+    the MathWorks supplied cross.m, and causes problems.
+
+8.  tr2q() now returns [1 0 0 0] for a unity rotation matrix, rather than
+    [1 NaN NaN NaN] as before.
+
+9.  the MEX file for Sparc architecture has been renamed frne.mexsol.  Note
+   there are some subtle differences between this version and rne.m.  In 
+   particular it doesn't handle robots with prismatic joints, and joint
+   friction is not implemented.
+
+Release 3
+=========
+
+1.  Fixed a bug in the COG for puma560 parameters
+
+2.  Added a MEX file version of rne for Sparc architecture.
+
+3.  Added additional support for modified DH notation, documentation files
+    mdh, mdyn, and also mrne().
+
+4.  Added some examples to the manual.
+
+Release 2
+=========
+
+1.  Fixed a serious error in jacob0().
+
+2. Auto-scaling in plotbot().  Previously scale factors were hardwired in, and
+   were appropriate for a Puma 560 only.  The maximum reach of the robot is
+   computed from the sum of the absolute values of the Ai and Di kinematic
+   parameters.
+
+3. Fixed a bug in passing DH submatrices to linktrans() and mlinktrans() within
+   a number of Toolbox functions.
+
+4. Added functionality to ikine() that allows solution for manipulators with
+   fewer than 6DOF, by ignoring Cartesian motion along, or about, user selected
+   Cartesian DOF.
+
+5.  Added a check on convergence to ikine() that returns after a large number
+    of iterations.
+
+6.  Fixed typo in eul2tr().
+
+7.  Added extra mode to tr2diff() to return differential motion between
+    two hom. xforms.
+
+8.  Use new tr2diff() mode in ikine().  Greatly improves computational speed.
+    This should eliminate many problems experienced by users with ikine().
+
+9.  Change in arguments to trinterp().
+
+10. Added support for initial and final velocity in jtraj().  Previously
+   documented but not implemented.
+
+11. Transposed descriptions of A and D parameters in dh.m and dyn.m.
+
+12. User contributed function ikine560() is faster and allows control over
+    the solution returned.
+
+13. New function ttg() to take rows out of Cartesian trajectory and unflatten
+    them.
+
+14.  New mode for transl() which extracts translational part of a Cartesian
+    trajectory.

@@ -1,0 +1,8 @@
+Be sure to comment out the font file you're not using
+in tut.tex and ref.tex.
+
+Then run latex on tut.tex to see a sample tutorial section
+and run latex on ref.tex to see a sample reference section.
+
+Sample tocs are tut.toc and ref.toc.
+

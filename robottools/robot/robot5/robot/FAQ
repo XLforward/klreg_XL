@@ -1,0 +1,21 @@
+Why doesn't the results of the dynamics functions rne(), inertia() or gravity mathe results of the book by ...
+
+Be very sure about the dynamic model.
+
+friction
+DH convention
+
+What is the difference between standard and modified Denavit-Hartenberg (DH)
+notation?
+
+The answer is "not much" and "rather a lot".  The standard form was proposed
+by Denavit and Hartenberg in 1955 for mechanisms and subsequently adopted
+for use in computer graphics and robotics in the very early days.
+
+Anybody who has tried will know ..
+
+Why doesn't the results of the kinematic functions fkine(), jacobn() or jacob0 mathe results of the book by ...
+
+Why is there no MEX file support for Windows?
+
+What does the error message .... about objects mean?

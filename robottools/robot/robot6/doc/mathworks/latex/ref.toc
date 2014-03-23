@@ -1,0 +1,67 @@
+\documentstyle[titlepage,ref,twoside]{article}
+\setlength{\topmargin}{10.4mm}      % top header - top paper
+\setlength{\textheight}{170mm} % 
+
+
+\setlength{\textwidth}{116mm}  % width of text
+\setlength{\evensidemargin}{36.6mm} % even page - left paper edge to text
+\setlength{\oddsidemargin}{36.6mm}  %   odd page - left paper edge to text 
+\setlength{\headsep}{12mm} %distance between header and body text
+\setlength{\footskip}{16mm}%distance between body of text and baseline of footer
+\setlength{\parindent}{0pt} %don't indent paragraphs
+\setlength{\parskip}{2mm} %distance between paragraphs
+
+\setlength{\hfuzz}{10pt} %allow for wider text
+% Include font file: either NFSS or PostScript:
+% \include{postfont}
+\include{nfssfont}
+
+
+\begin{document}
+\thispagestyle{empty}
+
+\newcommand{\namelistlabel}[1]{\mbox{#1}\hfil}
+\newenvironment{namelist}[1]{%
+\begin{list}{}
+{
+\let\makelabel\namelistlabel
+\settowidth{\labelwidth}{#1}
+\setlength{\leftmargin}{1.1\labelwidth}
+}
+}{%
+\end{list}}
+\newcommand{\Mlab}{M\eightTR ATLAB}
+\newcommand{\under}[1]{\underline{\rule[-.70ex]{0cm}{0cm}#1}}
+
+
+
+\pagestyle{headings}        % Gives page headings at top of page
+
+\thispagestyle{empty}
+
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\ba}{\begin{array}}
+\newcommand{\ea}{\end{array}}
+\newcommand{\ii}{\item}
+
+
+\renewcommand{\baselinestretch}{1.2}        % Expands inter-line spacing
+
+\newpage
+
+
+
+{\moveleft 35mm\vbox{\hbox{\NNNfon Contents{\hfill}}}}
+\bigskip\bigskip
+
+\Rfon
+\contentsline {subsection}{Introduction}{2-1}
+\contentsline {subsection}{Commissioning}{2-2}
+\contentsline {subsection}{mmle.m}{2-3}
+\end{document}

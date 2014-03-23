@@ -1,0 +1,174 @@
+		Robotics Toolbox - Release notes
+
+Release 5 (April 99)
+====================
+
+
+1.  Added a robot object that comprises an array of link objects. The robot
+    object has many attributes such as: name, manufacturer, base location,
+    gravity vector, graphics handles and so on.
+
+2.  Added a link object that encapsulates all information about a robot joint,
+    its link, the motor and the gearing. A link transformation matrix, Ai, is
+    now calculated by the link object. This means that issues such as standard
+    or modified Denavit-Hartenberg conventions can be hidden with the link
+    object. It has a flag to indicate what convention is in force and 
+    returns the correct A matrix.
+
+    Additional data that could reside in a link object include; a graphical 3-D
+    model, detailed dynamic models of the motor system, joint angle limits,
+    torque limits and so on.
+
+3.  Added a quaternion object which can be constructed from a 3  3 rotation
+    matrix, a vector and angle, or the 4 quaternion elements.  Quaternions
+    can be multiplied, divded and raised to integer powers using operator
+    overloading. Many explicit quaternion functions have disappeared from
+    the Toolbox.
+
+4.  Cartesian trajectories are now treated as 3 dimensional matrices rather
+    than the previous dodge of flattening the matrices into rows of a 2D matrix.
+    The last subscript in a trajectory matrix is the point index.
+
+5.  The vector argument to ctraj is now normalized path distance not time.
+    This allows for Cartesian paths with acceleration and deceleration.
+
+6.  inertia now works on a trajectory and returns a 3D matrix of inertias.
+
+7.  manipblty now has a flag to specify which manipulability measure is re-
+    quired.
+
+8.  plotbot has been replaced by the plot function which is overloaded for
+    robot objects.
+
+9.  The robot plot and animate functions allow multiple robots to be displayed
+    an animated within a figure window.
+
+10. The robot plot and animate functions allow multiple robots to be displayed
+    an animated within a figure window.
+
+11. fdyn no longer uses global variables to pass data to the function being
+    integrated. The user's torque function is now passed q and qd as distinct
+    vectors, rather than having to unpack them from one vector.
+
+12. Fixed a bug in jtraj when initial conditions are specified.
+
+13. The coriolis function now ignores joint friction, which could previously
+    corrupt the Coriolis force estimate.
+
+14. Added nofriction which returns a robot object similar to its argument,
+    but with all friction terms set to zero.
+
+15. New function ftrans to transform force/moments between coordinate frames.
+
+16. More functions now operate on trajectories,ie. gravload, inertia. iner-
+    tia returns a 3D matrix of inertias.
+
+17. New functions tr2rot and rot2tr convert between 3  3 rotation matrices
+    and 4  4 homogeneous forms.
+
+18. Generally increased checking of input arguments.
+
+19. Increased robustness to row or column orientation of input vectors.
+
+20. The MEX version of rne distributed previously is now broken by object
+    support. This will be fixed in due course, but if you have the Matlab C
+    compiler you compile it yourself.
+
+
+Release 4
+=========
+
+1.  Fixed a bug in trinterp() and drivepar() that causes errors in ctraj()
+    with trajectories that involve rotation around the Z-axis.
+
+2.  Fixed a bug with passing in end-effector force/moment to rne().
+
+3.  A Mailing List is now available.  To subscribe you send mail to:
+
+	robot-toolbox-request@dmt.csiro.au
+
+   with the single word
+
+	subscribe
+
+   in the body of the message. You can send other administrative messages, such
+   as "help", "list", ...
+
+
+4.  Changed location of Toolbox home page.
+
+	http://www.cat.csiro.au/dmt/programs/autom/pic/matlab.html
+
+5.  New rne.mex for DOS/Windows.  This was created by a user using the new
+    Matlab compiler and cmex'd for DOS.  I don't have mcc, but if anybody
+    would like to produce a MEX file for Sparc I'd like a copy.
+
+6.  New versions of cinertia(), jacob0(), jacobn(), maniplty() that accept an
+    optional M argument to select Cartesian DOF for robots with n < 6.
+
+7.  The function cross.m is no longer supplied.  It has different semantics to
+    the MathWorks supplied cross.m, and causes problems.
+
+8.  tr2q() now returns [1 0 0 0] for a unity rotation matrix, rather than
+    [1 NaN NaN NaN] as before.
+
+9.  the MEX file for Sparc architecture has been renamed frne.mexsol.  Note
+   there are some subtle differences between this version and rne.m.  In 
+   particular it doesn't handle robots with prismatic joints, and joint
+   friction is not implemented.
+
+Release 3
+=========
+
+1.  Fixed a bug in the COG for puma560 parameters
+
+2.  Added a MEX file version of rne for Sparc architecture.
+
+3.  Added additional support for modified DH notation, documentation files
+    mdh, mdyn, and also mrne().
+
+4.  Added some examples to the manual.
+
+Release 2
+=========
+
+1.  Fixed a serious error in jacob0().
+
+2. Auto-scaling in plotbot().  Previously scale factors were hardwired in, and
+   were appropriate for a Puma 560 only.  The maximum reach of the robot is
+   computed from the sum of the absolute values of the Ai and Di kinematic
+   parameters.
+
+3. Fixed a bug in passing DH submatrices to linktrans() and mlinktrans() within
+   a number of Toolbox functions.
+
+4. Added functionality to ikine() that allows solution for manipulators with
+   fewer than 6DOF, by ignoring Cartesian motion along, or about, user selected
+   Cartesian DOF.
+
+5.  Added a check on convergence to ikine() that returns after a large number
+    of iterations.
+
+6.  Fixed typo in eul2tr().
+
+7.  Added extra mode to tr2diff() to return differential motion between
+    two hom. xforms.
+
+8.  Use new tr2diff() mode in ikine().  Greatly improves computational speed.
+    This should eliminate many problems experienced by users with ikine().
+
+9.  Change in arguments to trinterp().
+
+10. Added support for initial and final velocity in jtraj().  Previously
+   documented but not implemented.
+
+11. Transposed descriptions of A and D parameters in dh.m and dyn.m.
+
+12. User contributed function ikine560() is faster and allows control over
+    the solution returned.
+
+13. New function ttg() to take rows out of Cartesian trajectory and unflatten
+    them.
+
+14.  New mode for transl() which extracts translational part of a Cartesian
+    trajectory.
